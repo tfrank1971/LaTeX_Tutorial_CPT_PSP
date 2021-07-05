@@ -1,0 +1,77 @@
+
+\subsection{Data disposition and subject population summary}
+
+ In total, there were 240 \glspl{PK} samples from 60 subjects available for analysis. \cref{tab:SumPKsamples} presents an overview of the concentrations. None of the concentrations were excluded from the analysis, e.g., due to \gls{BLQ} status.  Concentration versus time plots exhibit a monophasic decline, which is indicative of a one-compartment model (\cref{fig:ctplot}). 
+
+\input{../analysis/tables/OverviewPKSamples}
+
+The gender ratio of the subjects included in the data set is roughly balanced, with 53\% females and 47\% males. (\cref{tab:SumCatCov}).  Descriptive statistics of covariates age and weight are presented in \cref{tab:SumContCov}. 
+
+\input{../analysis/tables/SummaryCatCovariates}
+\input{../analysis/tables/SummaryContCovariates}
+
+Men and women are about the same age, with the men being slightly heavier than the women (\cref{tab:SumContCovSEX}).
+\input{../analysis/tables/SummaryContCovariatesSEX}
+
+\plotB{Concentrations versus time facetted by dose and colored by body weight}{../analysis/plots/ctplotallone.lin.DOSE}{../analysis/plots/ctplotallone.log.DOSE}{fig:ctplot}{Concentrations versus time facetted by dose and colored by body weight on linear (upper panel) and semi-logarithmic scale (lower panel). The thick black line represents the median}
+
+
+\clearpage
+
+\subsection{Population pharmacokinetic modeling results}
+
+\subsubsection{Base model}
+  
+Run \textnumero 1117171 is the base model as derived from the model 504 described in \autocite[p.~536]{Bauer2019}. The data were fit to a one-­compartment constant-­rate infusion model with the parameters \gls{CL} and \gls{V}. \Gls{IIV} was estimated on both \gls{CL} and \gls{V}. The residual unknown variability is proportional as the drug assay has a constant coefficient of variation as concentrations increase. Model parameters are summarized in \cref{tab:paramsum1117171}. Goodness-of-fit plots are presented in \cref{fig:gofA.1117171,fig:gofB.1117171}. 
+
+Plots of \glspl{ETA} versus covariates %% can be found in the appenix?? this is further down in Figures as compared to other igures appearing directly in the text
+ indicate moderate correlation between age and \gls{CL}, weight and \gls{V} and a low correlation between weight and \gls{CL} (\cref{fig:contcorrETA.1117171}).
+
+The NONMEM control stream and report file is presented in \cref{sec:nm.basemodel}. 
+
+\input{../analysis/tables/paramsum1117171}
+
+\plot{Goodness-of-fit plots of model no. 1117171 (1/2)}{../analysis/plots/gofA.1117171}{fig:gofA.1117171}{Goodness-of-fit plots of model no. 1117171 (1/2)}
+
+\plot{Goodness-of-fit plots of model no. 1117171 (2/2)}{../analysis/plots/gofB.1117171}{fig:gofB.1117171}{Goodness-of-fit plots of model no. 1117171 (2/2)}
+
+\clearpage 
+
+\subsubsection{Covariate analysis}
+
+Run \textnumero 1117172 is the full covariate model as described in \autocite[p.~536]{Bauer2019}. Covariates included age, weight and sex on each \gls{CL} and \gls{V}. \cref{tab:paramsum1117172} indicates that the model could be simplified by recognizing that the parameters estimating the effects of sex on \gls{CL} and \gls{V} are both estimated to be near 1, the effect of age on \gls{V} is near 0, and the effect of weight on \gls{CL} is near 0.75 (an allometric weight coefficient that is consistent with literature for allometric relationships between \gls{CL} and weight for many small molecules) \autocite{Bauer2019}. %%% add ref to nick holford?
+
+Goodness-of-fit plots are presented in \cref{fig:gofA.1117172,fig:gofB.1117172}. The NONMEM control stream and report file is presented in \cref{sec:nm.fullcovmodel}. 
+
+\input{../analysis/tables/paramsum1117172}
+
+\plot{Goodness-of-fit plots of model no. 1117172 (1/2)}{../analysis/plots/gofA.1117172}{fig:gofA.1117172}{Goodness-of-fit plots of model no. 1117172 (1/2)}
+
+\plot{Goodness-of-fit plots of model no. 1117172 (2/2)}{../analysis/plots/gofB.1117172}{fig:gofB.1117172}{Goodness-of-fit plots of model no. 1117172 (2/2)}
+
+\clearpage
+
+
+\subsubsection{Final model}
+
+Model \textnumero 1117172  was conveniently and reversibly simplified by fixing the appropriate THETAs to 1 and 0.75, respectively. Model parameters are summarized in \cref{tab:paramsum1117173}. Goodness-of-fit plots are presented in \cref{fig:gofA.1117173,fig:gofB.1117173}. Individual goodness-of-fit plots are shown in \cref{fig:ctpop.log.ID.1117173.A,fig:ctpop.log.ID.1117173.B}. The NONMEM control stream and report file is presented in \cref{sec:nm.finalmodel}. 
+
+\input{../analysis/tables/paramsum1117173}
+
+\plot{Goodness-of-fit plots of model no. 1117173 (1/2)}{../analysis/plots/gofA.1117173}{fig:gofA.1117173}{Goodness-of-fit plots of model no. 1117173 (1/2)}
+
+\plot{Goodness-of-fit plots of model no. 1117173 (2/2)}{../analysis/plots/gofB.1117173}{fig:gofB.1117173}{Goodness-of-fit plots of model no. 1117173 (2/2)}
+
+Simulation-based diagnostics of the final PK model \textnumero 1117173 (\cref{fig:npde1117173}) demonstrated the mean of \gls{NPDE} to be 0.08 with a variance of 1.04, indicating no bias and an ability of the model to reasonably capture the underlying variability. There were also no major trends in the plots of NPDE versus \gls{PRED} or time, therefore, the overall NPDE results indicated adequate performance of the model to describe the data.
+
+\plotIntext{Normal Q-Q plot of NPDE, plot of NPDE vs. time after dose and PRED, and histogram of NPDE with the probability density function of the overlaid standard Gaussian distribution, fit \textnumero 1117173}{../analysis/plots/npde.1117173}{fig:npde1117173}{Normal Q-Q plot of NPDE, plot of NPDE vs. time after dose and PRED, and histogram of NPDE with the probability density function of the overlaid standard Gaussian distribution, fit \textnumero 1117173}
+
+The scatter plot matrix presented in \cref{fig:contcorrETA.1117173} shows no more correlation between the post-hoc estimates of $\eta$s and covariates, indicating that covariate effects have been adequately considered in the model.
+
+An overview of the three models is shown in \cref{tab:comparison}. 
+
+\comptable{../analysis/comparison/modelcomp}{OBJ, Objective Function value; OBJdiff, difference of OBJ to the base model; nPSE, number of model parameters; ETCL, IIV on \gls{CL}; ETV, IIV on \gls{V}}
+
+Inclusion of covariates reduced the objective function by 60 units (fit \textnumero 1117172). The final model \textnumero 1117173 has a 7 units higher objective function than the full covariate model (\textnumero 1117172), which is not statistically significant with 5 degrees of freedom, which is the difference in the number of parameters (\cref{tab:comparison}). The reduction in \gls{IIV} due to inclusion of covariates is -36.2\% for \gls{CL} and -41.8\% for \gls{V} (model \textnumero 1117173 versus \textnumero 1117171). 
+
+ \glsadd{DV} \glsadd{WT}  \glsadd{N} \glsadd{sigma} \glsadd{omega}

@@ -1,0 +1,56 @@
+% Table showing summary of clinical studies
+% Enter text/numbers between table cell delimiter '&' after \endlastfoot
+
+\setcounter{table}{0}
+
+\begingroup\footnotesize
+
+\begin{ThreePartTable}
+\begin{TableNotes}[para,flushleft] % footnotes
+ \item[1] Your footnote text
+ \item[2] Your footnote text
+\end{TableNotes}
+
+\setlongtables
+\begin{landscape}
+\begin{longtable}{>{\RaggedRight}p{0.5cm}>{\Centering}p{1.5cm}p{3.5cm}p{4cm}p{3.cm}p{6.5cm}} \caption [Key design elements of clinical studies included in the analysis] {Key design elements of clinical studies included in the analysis} 
+\label{tab:sumclinstud}\\ \hline
+\multicolumn{1}{c}{\textbf{Study Number}}&
+\multicolumn{1}{c}{\textbf{Phase}}&
+\multicolumn{1}{c}{\textbf{Title/Design}}&
+\multicolumn{1}{c}{\textbf{Treatment}}&
+\multicolumn{1}{c}{\textbf{Study Population}}&
+\multicolumn{1}{c}{\textbf{Sampling Times}}
+\\ \hline
+\endfirsthead
+
+\caption [] {Key design elements of clinical studies included in the analysis (continued)}  \\ \hline
+\multicolumn{1}{c}{\textbf{Study Number}}&
+\multicolumn{1}{c}{\textbf{Phase}}&
+\multicolumn{1}{c}{\textbf{Title/Design}}&
+\multicolumn{1}{c}{\textbf{Treatment}}&
+\multicolumn{1}{c}{\textbf{Study Population}}&
+\multicolumn{1}{c}{\textbf{Sampling Times}}
+\\ \hline
+\endhead
+
+
+\hline
+
+%This is the footer for all pages except the last page of the table...
+  \multicolumn{3}{l}{{Continued on Next Page\ldots}} \\
+\endfoot
+
+%This is the footer for the last page of the table...
+  \\[-1.8ex] 
+\endlastfoot
+504 & 2 & text\tnote{1} & 1 ­mg, 2 mg, or 4 mg dose of an anesthetic over a 5-­hour constant-­rate intravenous infusion & N = 60 surgical patients & Individual, plasma samples were obtained at four time points after the start of the infusion (1, 5, 12, and 24 hours postinitiation) \\
+ & & & & & \\
+\hline
+\insertTableNotes
+\end{longtable}
+
+\end{landscape}
+
+\end{ThreePartTable}
+\endgroup

@@ -1,0 +1,61 @@
+\subsection{Overview of model development process}
+Ideally, a PopPK analysis follows a prespecified PopPK Analysis Plan (PAP), which is then made available in an Appendix.
+
+\subsection{Population pharmacokinetic modeling}
+
+In this example PopPK modelling was conducted using \gls{NONMEM} 7.4.1.
+
+\subsubsection{Structural model}
+
+The structural model is given by the base model supplied by Bauer et al. \autocite{Bauer2019}.
+
+\subsubsection{Statistical model}
+
+The statistical model was not further adapted from the base model. 
+
+\subsubsection{Covariate model}
+
+To illustrate the workflow through the proposed templates a covariate analysis using the literature model is demonstrated. 
+
+\subsubsection{Statistical methods for nonlinear mixed effect models}
+
+The \gls{FOCEI} estimation algorithm was used to fit the model. The \gls{OFV2}, which is statistically minus two times the log likelihood of the data,  was calculated for each model fit within NONMEM. The \gls{OFV2} on inclusion of a parameter was assumed to be $\chi^{2}$ distributed with number of degrees of freedom equal to the number of parameters added to the nested model. Nested models were accepted as a better model if the objective function was 3.84 points lower (P < 0.05) when including a new parameter.
+
+\subsubsection{Model evaluation}
+\label{sec:modelevaluation}
+
+Evaluation of the quality of the model was based on likelihood ratio test (\gls{OFV2}), goodness-of-fit plots, and $\eta$-shrinkage.
+
+\paragraph{Goodness-of-fit plots}$\;$\\
+
+Goodness-of-fit was graphically evaluated  as recommended in \autocite{Nguyen2017}.  The observed versus predicted observations (\acrshort{PRED} and \acrshort{IPRED}) were investigated to determine if the model described the data accurately. For each observation, \gls{CWRES} and \gls{IWRES} were calculated. The plots of \gls{IWRES} or CWRES versus IPRED and PRED were used to detect potential bias in individual and population predictions, respectively. The graph of CWRES versus time was plotted to assess a potential time dependency. No bias was concluded if data points were (more or less) scattered evenly around the horizontal zero-line.  Histograms and/or quantile-quantile probability plots (Q-Q plots) were drawn  to assess the normality of a given distribution.
+
+The distribution of the individual PK parameters was also evaluated by drawing density plots of \glspl{ETA}. An absence of a trend in the plots of \glspl{ETA} versus covariates would support an adequate consideration of covariates in the model.
+
+The descriptive performance of the model was evaluated by calculation of \glspl{NPDE} in NONMEM \autocite{Comets2008, Nguyen2012}.  Subsequently, NPDEs were evaluated in R to determine if the model described the data observed adequately. The \acrshortpl{NPDE} should follow a $\mathcal{N}(0,\,1)$ distribution. Plots of NPDEs versus observations and versus time were also evaluated to determine that no trends were present.
+
+\paragraph{Eta-shrinkage}$\;$\\
+
+The extent of Bayesian shrinkage ($\eta$-shrinkage) was evaluated using \cref{eq:shrinkage} \autocite{Savic2009}:
+%
+\begin{equation} 
+  \label{eq:shrinkage}
+\eta - shrinkage = \left(1 - \frac{SD_{\eta_{EBE,P}}}{\omega_{P}}\right) \cdot 100\% 
+\end{equation}
+%
+with EBE as Empirical Bayes Estimates, given for a parameter $P$. Large values of $\eta$-shrinkage, e.g., values >~50\%,  would be associated with generally poor individual estimates of that parameter.
+
+\subsection{Simulations}
+
+No simulations were performed for the example report. Please adapt this section as suitable. \ldots
+
+\subsection{Software and hardware}
+\label{sec:software}
+
+Data were analyzed using \gls{NONMEM} software version 7.4.1 (ICON, Development Solutions, Elliot City, MD, USA). NONMEM and its modules \acrshort{NM-TRAN} and \acrshort{PREDPP} were compiled with the GNU Compiler Collection for Fortran 90/95 (GCC 4.8, \autocite{GNUCompilerCollection}) running under openSUSE Linux (x86\_64), on a computer cluster based upon Intel\textsuperscript\textregistered\ multi-processor workstations/servers from HP\textsuperscript\textregistered\ or Fujitsu\textsuperscript\textregistered\ \autocite{Speth2004}. 
+
+All NONMEM runs were stored on the file server under unique archive numbers.
+
+Graphical analysis, descriptive statistics, and evaluation of NONMEM outputs were conducted using R~\autocite{RTeam}. The used R scripts are documented in \cref{sec:Rscripts}. The version of R and package dependencies are documented in \cref{sec:Rsettings}.
+
+  
