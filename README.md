@@ -9,7 +9,7 @@ Contains a text file holding GNU AFFERO GENERAL PUBLIC LICENSE
 ## logo directory
 Contains image file `logo.png`
 ## nonmem directory
-Contains 3 tar.gz files containing NONMEM control streams and results for base model (No. 1117171), full covariate model (No. 1117172) and final model (No. 1117173)
+Contains 3 compressed (tar.gz) files containing NONMEM control streams and results for base model (No. 1117171), full covariate model (No. 1117172) and final model (No. 1117173)
 ## Rfunctions directory
 Contains 24 R functions needed to post-process NONMEM archives
 ## Rresults directory
