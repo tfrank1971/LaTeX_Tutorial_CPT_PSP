@@ -4,6 +4,8 @@ LaTeX tutorial for standardization and automation of population analysis reports
 Contains LaTeX source files that hold the actual content of the report, e.g., summary.tex, introduction.tex, etc.
 ## data directory
 Contains NONMEM input data set `data_set_504.dat`
+## license directory
+Contains a text file holding GNU AFFERO GENERAL PUBLIC LICENSE
 ## logo directory
 Contains image file `logo.png`
 ## nonmem directory
