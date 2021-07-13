@@ -1,0 +1,74 @@
+%%%%% needs listings package in premable
+
+%\lstset{ not needed if listingsutf8 package is used 
+%  literate={ö}{{\"o}}1
+%           {ä}{{\"a}}1
+%           {ü}{{\"u}}1
+%           {Ä}{{\"A}}1
+%           {Ü}{{\"U}}1
+%           {Ö}{{\"O}}1
+%           {ß}{{\ss}}1
+%           {²}{{$^2$}}1
+%}
+
+\section{POPULATION PHARMACOKINETIC ANALYSIS PLAN}
+\label{sec:DAP}
+%\includepdf[pages=-, scale=.9, pagecommand={\thispagestyle{scrheadings}}]{/workfra/...}
+
+\clearpage
+
+\section{LISTINGS OF NONMEM CONTROL STREAMS AND REPORT FILES}
+\label{sec:NMN}
+
+\subsection{Fit \texorpdfstring{{\fontfamily{cmr}\selectfont\textnumero}}{no.} 1117171}
+\label{sec:nm.basemodel}
+\lstset{breaklines=true, numbers=none, language=, basicstyle=\tiny\ttfamily, columns=flexible}
+\lstinputlisting[]{../analysis/tables/run504_no_cov1117171.rep}
+
+\clearpage
+
+\subsection{Fit \texorpdfstring{{\fontfamily{cmr}\selectfont\textnumero}}{no.} 1117172}
+\label{sec:nm.fullcovmodel}
+\lstinputlisting[]{../analysis/tables/run504_full_cov1117172.rep}
+
+\clearpage
+
+\subsection{Fit \texorpdfstring{{\fontfamily{cmr}\selectfont\textnumero}}{no.} 1117173}
+\label{sec:nm.finalmodel}
+\lstinputlisting[]{../analysis/tables/run504_with_cov_fix1117173.rep}
+
+\clearpage
+
+\section{LISTINGS OF SOURCE FILES}
+\label{sec:SPL}
+
+\subsection{R Scripts}
+\label{sec:Rscripts}
+
+
+\subsubsection{Exploratory analysis}
+\label{sec:exploratory.R}
+\lstset{breaklines=true, language=R, basicstyle=\scriptsize, numbers=left, numberstyle=\tiny, stepnumber=2, numbersep=5pt, inputencoding=utf8, extendedchars=\true}
+  \lstinputlisting[]{../analysis/exploratory.R}
+\clearpage
+
+
+\subsubsection{Post-processing of NONMEM runs}
+\label{sec:postprocessing.R}
+  \lstinputlisting[]{../analysis/postprocessing.R}
+\clearpage
+
+\subsubsection{Goodness-of-fit plots and parameter summary}
+\label{sec:standardplots.R}
+  \lstinputlisting[]{../analysis/standard.plots.R}
+\clearpage
+
+\subsection{R Settings}
+\label{sec:Rsettings}
+
+\lstset{breaklines=true, numbers=none, language=, basicstyle=\scriptsize\ttfamily, columns=flexible} 
+
+\lstinputlisting{../analysis/tables/RsessionInfo.txt}
+
+
+\endinput

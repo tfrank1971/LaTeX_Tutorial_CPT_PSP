@@ -1,0 +1,212 @@
+%%% Copyright (c) 2016-2020 Thomas Frank (thomas.frank@sanofi.com).
+%%% This program is free software: You can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program (see file named LICENSE). If not, see <https://www.gnu.org/licenses/>.
+
+\documentclass[abstract=true,
+              titlepage=true,
+              fontsize=12pt, 
+              pagesize=auto, 
+              DIV=13, BCOR=5mm, 
+              headings=normal,
+              bibliography=totocnumbered,
+              numbers=noenddot,
+              parskip=half]{scrartcl}
+
+%==========================================================================
+% packages, macros, and properties describing this document
+%==========================================================================
+
+\input{#report#-preamble}
+\input{#report#-properties}
+
+%==========================================================================
+% hyperref settings
+%==========================================================================
+
+\definecolor{LinkColor}{RGB}{0,0,255}
+\usepackage{xr-hyper}
+\usepackage[pdfnewwindow]{hyperref} % option: pagebackref  for page numbers in ref. list (not needed)
+\hypersetup{
+        pdfstartview={XYZ null null 0.0}, 
+        pdfview={XYZ 0 0 0},
+        colorlinks=true,
+        breaklinks=true,
+        linkcolor=LinkColor,
+        menucolor=LinkColor,
+        urlcolor=LinkColor,
+        citecolor=LinkColor,
+        filecolor=LinkColor,
+        bookmarks=true,
+        bookmarksopen=false,
+        bookmarksnumbered=true,
+        linktocpage=true,
+        backref=false,
+        hyperfootnotes=false,
+        hypertexnames=false,
+        pdfauthor={\author}, 
+        pdftitle={\titlec}, 
+        pdfsubject={\DOC}, 
+        pdfkeywords={\titleb} 
+} % \hypersetup should not be outsourced to preamble.tex because then PDF metainfo cannot be set
+\usepackage[nameinlink, noabbrev,capitalize]{cleveref}
+
+%==========================================================================
+% actual start of the document
+%==========================================================================
+
+\begin{document}
+
+% TITLE PAGE AND APPROVAL PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%\phantomsection % needed for hyperref
+%\pdfbookmark[1]{POPULATION PHARMACOKINETIC REPORT}{toc} %change as appropriate
+\addcontentsline{toc}{section}{TITLE PAGE}
+%\includepdf{#report#-titlepage.pdf} % alternative; to import a single, compiled PDF page, e.g. a title page made from a MS Word-Template or any other program
+\input{#report#-titlepage}
+\phantomsection% needed for hyperref
+%\addcontentsline{toc}{section}{STUDY PLAN APPROVAL SIGNATURES}
+\input{#report#-approval} 
+%\includepdf{#report#-approval.pdf} % alternative; use this command line (and comment out the line above) to include a manually signed page
+\newpage
+
+% SUMMARY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\phantomsection % needed for hyperref
+%\pdfbookmark[1]{SUMMARY}{toc} % not needed if \usepackage{abstract} is on
+\renewcommand{\abstractname}{\sffamily SUMMARY} 
+%\setcounter{table}{0} % reset counter 
+%\setcounter{figure}{0}
+
+\begingroup
+\let\vfil\relax
+\begin{abstract} 
+
+\thispagestyle{scrheadings}
+
+\vspace*{-.5em}
+ 
+\label{abstract}
+\input{textblocks/summary}
+\end{abstract}
+\endgroup
+
+\clearpage
+\newpage
+
+% Table of contents, List of figures, List of tables %%%%%%%%%%%%%%%%%%%%%
+
+\phantomsection % needed for hyperref
+  \renewcommand{\contentsname}{TABLE OF CONTENTS}
+  \addcontentsline{toc}{section}{\contentsname}  
+    %\pdfbookmark[1]{TABLE OF CONTENTS}{\contentsname}
+  \tableofcontents
+  \newpage
+\phantomsection %needed for hyperref
+  \renewcommand{\listtablename}{LIST OF TABLES}
+  \addcontentsline{toc}{section}{\listtablename}
+  %\pdfbookmark[1]{LIST OF TABLES}{\listtablename} 
+  \listoftables
+\phantomsection %needed for hyperref
+  \renewcommand{\listfigurename}{LIST OF FIGURES}
+  \addcontentsline{toc}{section}{\listfigurename}
+  %\pdfbookmark[1]{LIST OF FIGURES}{\listfigurename} 
+  \listoffigures
+
+\clearpage
+\newpage
+
+
+% List of acronyms %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\phantomsection % needed for hyperref
+% \setlength{\glslistdottedwidth}{.35\linewidth} % adapt the width of the dotted line if style=listdotted
+\printglossary[type=\acronymtype, style=long, title={ABBREVIATIONS, TERMS, AND SYMBOLS}, toctitle={ABBREVIATIONS, TERMS, AND SYMBOLS}]
+
+\clearpage
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MAIN TEXT :::: 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{table}{1} % reset counter (maybe needed if tables are shown in the summary)
+\setcounter{figure}{0}
+\renewcommand{\angle}{0}
+
+\section{INTRODUCTION}
+\label{sec:introduction}
+
+\input{textblocks/introduction}
+
+\section{OBJECTIVES}
+\label{sec:objectives}
+
+\input{textblocks/objectives}
+
+\clearpage
+
+\section{DATA}
+\label{sec:data}
+
+\input{textblocks/data}
+
+\clearpage
+
+\section{METHODS}
+\label{sec:methods}
+
+\input{textblocks/methods}
+
+\clearpage
+
+\section{RESULTS}
+\label{sec:results}
+
+\input{textblocks/results}
+
+\clearpage
+
+\section{DISCUSSION}
+\label{sec:discussion}
+
+\input{textblocks/discussion}
+
+\clearpage
+
+\section{CONCLUSIONS}
+\label{sec:conclusion}
+
+\input{textblocks/conclusion}
+
+\clearpage
+
+%%%%%%%%%%% Bibliography  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\bibliographystyle{latex8English}
+%\bibliographystyle{vancouver} 
+%\phantomsection % needed for hyperref
+%\addcontentsline{toc}{section}{\refname}
+%\bibliography{#report#}
+\printbibliography[heading=bibliography, title={REFERENCES}]
+
+%%%%%%%%% Behind-of-text displays and tables  %%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+
+\input{#report#-behindoftextdisplays}
+
+%%%% APPENDIX SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+
+\renewcommand{\appendixtocname}{APPENDICES}
+\renewcommand{\appendixpagename}{\sffamily APPENDICES}
+
+\appendix
+\appendixpage
+\addappheadtotoc
+
+\input{#report#-appendix}
+
+%%% LAST PAGE FOOTER printing the path and the PDF creation date  %%%%%%%%%
+% ------ no \clearpage before !! ------------------------------------------
+
+\lofoot{\scs \basedir/\basefile.tex ; \DTMnow } \rofoot{Page \thepage{}}
+
+\end{document}
+
+\endinput
+% END OF FILE
