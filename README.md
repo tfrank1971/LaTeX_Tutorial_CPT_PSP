@@ -12,3 +12,7 @@ Contains 3 tar.gz files containing NONMEM control streams and results for base m
 Contains 24 R functions needed to post-process NONMEM archives
 ## Rresults directory
 Includes subdirectories containing tables and plots belonging to the NONMEM analysis (output created by the 3 R scripts `standard.plots.R`, `exploratory.R` and `postprocessing.R`)
+## Rscripts directory
+Contains 3 R scripts `standard.plots.R` (functions to create goodness-of-fit plots and summary tables for NONMEM runs), `exploratory.R` (descriptive statistics of PK samples and subjects, concentration versus time plots of raw data), and `postprocessing.R` (post-processing steps for NONMEM runs)
+## file `.latexmkrc`
+(Hidden) configuration file for automated report compilation with latexmk
