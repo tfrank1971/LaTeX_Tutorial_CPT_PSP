@@ -1,14 +1,14 @@
 %==========================================================================
 % definitions to be loaded just before the document environment
 %==========================================================================
-\usepackage{fontspec}
-    \setsansfont{Arial}
-    \setmonofont{Courier New}
       
 \usepackage{polyglossia}
     \setdefaultlanguage[variant=american]{english}
   
-\usepackage[times]{fontsetup}
+\usepackage[times]{fontsetup} %Loads the FreeSerifb fonts, a Times font and stix2 for Mathematics with letters replaced from FreeSerif   
+    \setsansfont{Arial} %The main font-selecting command, which selects the standard fonts used in a document
+    \setmonofont{Courier New} %The main font-selecting command, which selects the standard fonts used in a document
+    
 \usepackage{datetime2}
   \usepackage{setspace}
   \usepackage{ifthen}
@@ -35,14 +35,14 @@
   \usepackage{textcomp} % kile special characters
   \usepackage{xcolor} % colored text
   \usepackage{listings} % for listings in Appendix
-  \usepackage{listingsutf8} % extension in case there are umlaute
+  \usepackage{listingsutf8} % extension in case there are umlauts
   \usepackage{appendix} % prints APPENDIX heading in ToC
   \usepackage{subcaption} % replaces subfig and subfigure
   %\usepackage{cite} % correct refs for multiple citation, incompatible with biblatex 
     \usepackage{enumitem}
   \usepackage{makeidx}
   \usepackage[autostyle=true]{csquotes}
-  \usepackage[backend=biber,style=vancouver, maxbibnames=6, minbibnames=6]{biblatex} %install biblatex-vancouver in /usr/share/texmf/texconfig/, then run /usr/share/texmf/texconfig/update force
+  \usepackage[backend=biber,style=nejm, maxbibnames=6, minbibnames=6]{biblatex} %biblatex numeric style based on the design of the New England Journal of Medicine (NEJM). 
    
   \addbibresource{#report#.bib} % replaces old \bibliography command
 %\bibliography{publications}      % name of bib-file without .bib
@@ -79,7 +79,7 @@
 
 
   \newcommand{\scale}{2.5}
-  \newcommand{\plotscale}{1}
+  \newcommand{\plotscale}{1} %zooms the figure to x% of its original size (default 1 = 100%)
 
   \newcommand{\plot}[4] { %\parskip0pt
         \begin{figure}[ht]

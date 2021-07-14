@@ -1,15 +1,15 @@
 %%% Copyright (c) 2016-2020 Thomas Frank (thomas.frank@sanofi.com).
 %%% This program is free software: You can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program (see file named LICENSE). If not, see <https://www.gnu.org/licenses/>.
 
-\documentclass[abstract=true,
-              titlepage=true,
+\documentclass[abstract=true, %include abstract title in Table of Contents
+              titlepage=true, %includes title page environment
               fontsize=12pt, 
-              pagesize=auto, 
-              DIV=13, BCOR=5mm, 
-              headings=normal,
-              bibliography=totocnumbered,
-              numbers=noenddot,
-              parskip=half]{scrartcl}
+              pagesize=auto, %select an output driver for writing the paper size into the PDF file
+              DIV=13, BCOR=5mm, %calculates type area (13 stripes division) and includes 5 mm of binding correction
+              headings=normal, %decrease font size for headings
+              bibliography=totocnumbered, %reference list to appear as section in Table of Contents
+              numbers=noenddot, % no dots behind section numbers
+              parskip=half]{scrartcl} %no paragraph indentation
 
 %==========================================================================
 % packages, macros, and properties describing this document
@@ -46,8 +46,8 @@
         pdftitle={\titlec}, 
         pdfsubject={\DOC}, 
         pdfkeywords={\titleb} 
-} % \hypersetup should not be outsourced to preamble.tex because then PDF metainfo cannot be set
-\usepackage[nameinlink, noabbrev,capitalize]{cleveref}
+} % \hypersetup should not be outsourced to preamble because then PDF metainfo cannot be set
+\usepackage[nameinlink, noabbrev,capitalize]{cleveref} %needs to be loaded after the hyperref package and both are to be loaded as the last packages, because they redefine many LaTeX commands 
 
 %==========================================================================
 % actual start of the document
