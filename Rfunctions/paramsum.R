@@ -14,6 +14,7 @@
 #' @param table.placement contain only elements of {"h","t","b","p","!","H"}. Default value is "ht".
 #' @param caption character vector specifying the table's caption; see \code{\link{xtable}} for details.
 #' @param label character string specifying the LaTeX label ; see \code{\link{xtable}} for details.
+#' @param CV standard error of IIV / RUV given on CV scale.
 #' @param ... Additional arguments. (Currently ignored.)
 #'
 #' @return Prints the table as text output in the console and creates the .tex-files in the filesystem.
@@ -33,6 +34,7 @@ paramsum <- function
  table.placement = "ht",
  caption = "Parameter estimates and standard errors from model no. ",
  label = "tab:MyLable1",
+ CV = TRUE,
  ...
  ){
   options("scipen"=20)
@@ -74,6 +76,15 @@ paramsum <- function
 
   etatmp<-eta
   sigtmp<-sig
+  
+  if (CV == T) {
+  eta[, 1] <- sqrt(etatmp[, 1])*100
+  sig[, 1] <- sqrt(sigtmp[, 1])
+  } else {
+    eta[, 1] <- etatmp[, 1]
+    sig[, 1] <- sigtmp[, 1]
+  }
+  
   eta[,1]<-sqrt(etatmp[,1])
   sig[,1]<-sqrt(sigtmp[,1])
 
@@ -107,18 +118,31 @@ paramsum <- function
   theta<-roundValues(values = theta)
   tmp[,1] <- ifelse(tmp[,1]<0,tmp[,1]*-1,tmp[,1])
   theta[,1]<-paste(theta[,1]," (",tmp[,1],")",sep = "")
+  
+  if(CV == T) {
+  tmp <- as.data.frame(100 * (stereta[, 1]/etatmp[, 1])/2)
+  tmp <- roundValues(values = tmp)
+  eta <- roundValues(values = eta)
+  tmp[, 1] <- ifelse(tmp[, 1] < 0, tmp[, 1] * -1, tmp[, 1])
+  eta[, 1] <- paste(eta[, 1], " (", tmp[, 1], ")", sep = "")
+  tmp <- as.data.frame(100 * (stersigma[, 1]/sigtmp[, 1])/2)
+  tmp <- roundValues(values = tmp)
+  sig <- roundValues(values = sig)
+  tmp[, 1] <- ifelse(tmp[, 1] < 0, tmp[, 1] * -1, tmp[, 1])
+  sig[, 1] <- paste(sig[, 1], " (", tmp[, 1], ")", sep = "")
+  } else {
+    tmp <- as.data.frame(100 * (stereta[, 1]/etatmp[, 1]))
+    tmp <- roundValues(values = tmp)
+    eta <- roundValues(values = eta)
+    tmp[, 1] <- ifelse(tmp[, 1] < 0, tmp[, 1] * -1, tmp[, 1])
+    eta[, 1] <- paste(eta[, 1], " (", tmp[, 1], ")", sep = "")
+    tmp <- as.data.frame(100 * (stersigma[, 1]/sigtmp[, 1]))
+    tmp <- roundValues(values = tmp)
+    sig <- roundValues(values = sig)
+    tmp[, 1] <- ifelse(tmp[, 1] < 0, tmp[, 1] * -1, tmp[, 1])
+    sig[, 1] <- paste(sig[, 1], " (", tmp[, 1], ")", sep = "")
+  }
 
-  tmp<-as.data.frame(100*(stereta[,1]/etatmp[,1]))
-  tmp<-roundValues(values = tmp)
-  eta<-roundValues(values = eta)
-  tmp[,1] <- ifelse(tmp[,1]<0,tmp[,1]*-1,tmp[,1])
-  eta[,1]<-paste(eta[,1]," (",tmp[,1],")",sep = "")
-
-  tmp<-as.data.frame(100*(stersigma[,1]/sigtmp[,1]))
-  tmp<-roundValues(values = tmp)
-  sig<-roundValues(values = sig)
-  tmp[,1] <- ifelse(tmp[,1]<0,tmp[,1]*-1,tmp[,1])
-  sig[,1]<-paste(sig[,1]," (",tmp[,1],")",sep = "")
 
   # Column: Shrinkage
   if(!is.null(obj@Esti$shrinketa)|!is.null(obj@Esti$shrinksig)){
@@ -295,7 +319,7 @@ paramsum <- function
     texfile <- paste(path, "/runparam", fitNumber, ".tex", sep = "")
     write(texlist, file = texfile)
     # Creates the .tex-file
-       cmd = paste("cd ", path, "; echo '\\begin{table}[ht]'>paramsum",fitNumber, ".tex; echo '\\begin{threeparttable}'>>paramsum",fitNumber,".tex; grep -iv table paramsum", fitNumber,".texraw>>paramsum", fitNumber, ".tex; echo '\\begin{tablenotes}\\footnotesize'>>paramsum", fitNumber,".tex; echo '\\item[]'>>paramsum",fitNumber,".tex; echo '\\item[] RSE = relative standard error, SD = standard deviation; SE = standard error; CI = confidence interval calculated as 95\\%~CI = Point estimate pm 2 cdot SE; NA = not applicable.'>>paramsum",fitNumber,".tex; echo '\\item[] RSE of parameter estimate is calculated as 100 × (SE/typical value).'>>paramsum",fitNumber,".tex; echo '\\item[] RSE of inter-individual variability magnitude is presented on \\%CV scale and approximated as 100 × (SE/variance estimate)/2.'>>paramsum",fitNumber,".tex; echo '\\item[] Shrinkage is calculated as 100 × (1 – SD of post hocs/omega), with omega = sqrt(variance estimate).'>>paramsum",fitNumber,".tex; echo '\\end{tablenotes}'>>paramsum",fitNumber ,".tex; echo '\\end{threeparttable}'>>paramsum",fitNumber,".tex; echo '\\end{table}'>>paramsum", fitNumber, ".tex ", sep = "")
+       cmd = paste("cd ", path, "; echo '\\begin{table}[ht]'>paramsum",fitNumber, ".tex; echo '\\begin{threeparttable}'>>paramsum",fitNumber,".tex; grep -iv table paramsum", fitNumber,".texraw>>paramsum", fitNumber, ".tex; echo '\\begin{tablenotes}\\footnotesize'>>paramsum", fitNumber,".tex; echo '\\item[]'>>paramsum",fitNumber,".tex; echo '\\item[] RSE = relative standard error, SD = standard deviation; SE = standard error; CI = confidence interval calculated as 95\\%~CI = Point estimate pm 2 cdot SE; NA = not applicable.'>>paramsum",fitNumber,".tex; echo '\\item[] RSE of parameter estimate is calculated as 100 × (SE/typical value).'>>paramsum",fitNumber,".tex; echo '\\item[] RSE of inter-individual variability (omega) and residual variability (sigma) magnitude  is presented on \\%CV scale and approximated as 100 × (SE/variance estimate)/2.'>>paramsum",fitNumber,".tex; echo '\\item[] Shrinkage is calculated as 100 × (1 – SD of post hocs/omega), with omega = sqrt(variance estimate).'>>paramsum",fitNumber,".tex; echo '\\end{tablenotes}'>>paramsum",fitNumber ,".tex; echo '\\end{threeparttable}'>>paramsum",fitNumber,".tex; echo '\\end{table}'>>paramsum", fitNumber, ".tex ", sep = "")
     system(cmd)
     cmd = paste("cd ", path, "; perl -pi.back -e 's/omega/\\$\\\\omega\\$/g;' paramsum", fitNumber, ".tex", sep = "")
     system(cmd)
