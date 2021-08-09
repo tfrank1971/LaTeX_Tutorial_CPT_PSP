@@ -14,29 +14,47 @@ Random number generation:
  Sample:  Rejection 
  
 locale:
- [1] LC_CTYPE=de_DE.UTF-8       LC_NUMERIC=C               LC_TIME=de_DE.UTF-8        LC_COLLATE=de_DE.UTF-8     LC_MONETARY=de_DE.UTF-8   
- [6] LC_MESSAGES=de_DE.UTF-8    LC_PAPER=de_DE.UTF-8       LC_NAME=C                  LC_ADDRESS=C               LC_TELEPHONE=C            
+ [1] LC_CTYPE=de_DE.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=de_DE.UTF-8        LC_COLLATE=de_DE.UTF-8    
+ [5] LC_MONETARY=de_DE.UTF-8    LC_MESSAGES=de_DE.UTF-8   
+ [7] LC_PAPER=de_DE.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
 [11] LC_MEASUREMENT=de_DE.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
- [1] base      datasets  graphics  grDevices grid      methods   parallel  splines   stats     utils    
+ [1] base      datasets  graphics  grDevices grid      methods   parallel 
+ [8] splines   stats     utils    
 
 other attached packages:
- [1] Biobase_2.44.0      BiocGenerics_0.30.0 car_3.0-4           carData_3.0-2       dplyr_1.0.0         foreach_1.4.7      
- [7] gam_1.16.1          ggplot2_3.3.1       lattice_0.20-38     mclust_5.4.5        npde_2.0            papeR_1.0-4        
-[13] plyr_1.8.6          reshape_0.8.8       xpose4_4.5.3        xtable_1.8-4       
+ [1] Biobase_2.44.0      BiocGenerics_0.30.0 car_3.0-4          
+ [4] carData_3.0-2       dplyr_1.0.0         foreach_1.4.7      
+ [7] gam_1.16.1          ggplot2_3.3.1       lattice_0.20-38    
+[10] mclust_5.4.5        npde_2.0            papeR_1.0-4        
+[13] plyr_1.8.6          reshape_0.8.8       xpose4_4.5.3       
+[16] xtable_1.8-4       
 
 loaded via a namespace (and not attached):
- [1] abind_1.4-5         acepack_1.4.1       assertthat_0.2.1    backports_1.1.5     base64enc_0.1-3     cellranger_1.1.0   
- [7] checkmate_1.9.4     cli_1.1.0           cluster_2.1.0       codetools_0.2-16    colorspace_1.4-1    compiler_3.6.1     
-[13] crayon_1.3.4        curl_4.2            data.table_1.12.6   digest_0.6.22       ellipsis_0.3.0      farver_2.0.3       
-[19] forcats_0.4.0       foreign_0.8-72      Formula_1.2-3       gdata_2.17.0        generics_0.0.2      GGally_2.0.0       
-[25] glue_1.4.1          gmodels_2.18.1      gridExtra_2.3       gtable_0.3.0        gtools_3.8.1        haven_2.2.0        
-[31] Hmisc_4.3-0         hms_0.5.3           htmlTable_1.13.2    htmltools_0.4.0     htmlwidgets_1.5.1   iterators_1.0.12   
-[37] knitr_1.28          labeling_0.3        latticeExtra_0.6-28 lifecycle_0.2.0     magrittr_1.5        MASS_7.3-51.4      
-[43] Matrix_1.2-17       mgcv_1.8-31         munsell_0.5.0       nlme_3.1-142        nnet_7.3-12         openxlsx_4.1.3     
-[49] pillar_1.4.4        pkgconfig_2.0.3     prettyunits_1.0.2   progress_1.2.2      purrr_0.3.4         R6_2.4.1           
-[55] RColorBrewer_1.1-2  Rcpp_1.0.3          readxl_1.3.1        rio_0.5.16          rlang_0.4.6         rpart_4.1-15       
-[61] rstudioapi_0.10     scales_1.1.1        stringi_1.4.6       stringr_1.4.0       survival_2.44-1.1   tibble_3.0.1       
-[67] tidyselect_1.1.0    tools_3.6.1         vctrs_0.3.1         withr_2.1.2         xfun_0.10           yaml_2.2.0         
-[73] zip_2.1.1          
+ [1] abind_1.4-5         acepack_1.4.1       assertthat_0.2.1   
+ [4] backports_1.1.5     base64enc_0.1-3     cellranger_1.1.0   
+ [7] checkmate_1.9.4     cluster_2.1.0       codetools_0.2-16   
+[10] colorspace_1.4-1    compiler_3.6.1      crayon_1.3.4       
+[13] curl_4.2            data.table_1.12.6   digest_0.6.22      
+[16] ellipsis_0.3.0      farver_2.0.3        forcats_0.4.0      
+[19] foreign_0.8-72      Formula_1.2-3       gdata_2.17.0       
+[22] generics_0.0.2      GGally_2.0.0        glue_1.4.1         
+[25] gmodels_2.18.1      gridExtra_2.3       gtable_0.3.0       
+[28] gtools_3.8.1        haven_2.2.0         Hmisc_4.3-0        
+[31] hms_0.5.3           htmlTable_1.13.2    htmltools_0.4.0    
+[34] htmlwidgets_1.5.1   iterators_1.0.12    knitr_1.28         
+[37] labeling_0.3        latticeExtra_0.6-28 lifecycle_0.2.0    
+[40] magrittr_1.5        MASS_7.3-51.4       Matrix_1.2-17      
+[43] mgcv_1.8-31         munsell_0.5.0       nlme_3.1-142       
+[46] nnet_7.3-12         openxlsx_4.1.3      pillar_1.4.4       
+[49] pkgconfig_2.0.3     prettyunits_1.0.2   progress_1.2.2     
+[52] purrr_0.3.4         R6_2.4.1            RColorBrewer_1.1-2 
+[55] Rcpp_1.0.3          readxl_1.3.1        rio_0.5.16         
+[58] rlang_0.4.6         rpart_4.1-15        rstudioapi_0.10    
+[61] scales_1.1.1        stringi_1.4.6       stringr_1.4.0      
+[64] survival_2.44-1.1   tibble_3.0.1        tidyselect_1.1.0   
+[67] tools_3.6.1         vctrs_0.3.1         withr_2.1.2        
+[70] xfun_0.10           zip_2.1.1          
