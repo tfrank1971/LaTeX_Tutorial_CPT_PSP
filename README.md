@@ -1,5 +1,5 @@
 # LaTeX_Tutorial_CPT_PSP
-LaTeX tutorial for standardization and automation of population analysis reports. To cite this work please read and cite the manuscript: https://doi.org/10.1002/psp4.12705
+LaTeX tutorial for the standardization and automation of population analysis reports. To cite this work please read and cite the manuscript: https://doi.org/10.1002/psp4.12705
 ## textblocks directory
 Contains LaTeX source files that hold the actual content of the report, e.g., summary.tex, introduction.tex, etc.
 ## data directory
